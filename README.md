@@ -4,7 +4,7 @@ Specification of how to use ExPecto to predict variant's effect on gene expressi
 ```
 python chromatin.py ./example/example.vcf
 ```
-The input file *example.vcf* is the standard vcf format. The seperator is the table sign. The screenshot is as following.
+The input file *example.vcf* is the standard vcf format. The separator is the table sign. The screenshot is as following.
 ![](Pictures/example_vcf.png)
 
 
@@ -30,7 +30,9 @@ Download the gene annotation file `gencode.v19.annotation.gtf.gz` from [GENCODE]
 
 ![](Pictures/gencode.png)
 
-As we can see, the initial `gtf` file adopts 1-based position. According to the specification, it should be converted to 0-based position when extract the TSS information.
+As we can see, the initial `gtf` file adopts 1-based position. According to the specification, it should be converted to 0-based position when extract the TSS information. Therefore, I wrote a python script `gene_strand.py`.
+
+The initial `gtf` file is specified by variable `gencode19`; the output file is specified by variable `gencode19_cut`. Please note that the separator is also the table sign.
 
 
 
