@@ -20,5 +20,17 @@ python predict.py --coorFile ./example/example.vcf --geneFile ./example/example.
 The content of the gene association file has to include the following information:
 
 - The first column is the chromosome name.
-- The second and third columns are the positions. (Obviously, it is 0-based postion)
+- The second and third columns are the positions. (Obviously, it is 0-based position.)
+- The fourth and fifth columns are the reference bases and alternative bases, respectively.
+- The last three columns are the strand of the associated gene, the ENSEMBL gene id (matched with the gene annotation file `./resources/geneanno.csv`) and distance to the representative TSS of that gene (The distance should be signed and calculated as ''*TSS position* - *variant position*" regardless of on which strand the gene is transcribed.).
+
+### How to get the TSS information of the corresponding genes
+
+Download the gene annotation file `gencode.v19.annotation.gtf.gz` from [GENCODE](https://www.gencodegenes.org/human/release_19.html).
+
+![](Pictures/gencode.png)
+
+As we can see, the initial `gtf` file adopts 1-based position. According to the specification, it should be converted to 0-based position when extract the TSS information.
+
+
 
