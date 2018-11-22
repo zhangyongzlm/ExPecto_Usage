@@ -54,12 +54,14 @@ python ./train.py --expFile ./resources/geneanno.exp.csv --targetIndex 1 --outpu
 
 This trains an ExPecto model using the Adipose gene expression profile in the first column of the `geneanno.exp.csv` file and the default precomputed epigenomic features. For training new ExPecto model for your custom (differential) expression profile, replace geneanno.exp.csv with your expression profile. The gene order has to be the same as the geneanno.csv. The generated model can be used by `predict.py` by adding the path of the xgboost model file to the `modelList` file.
 
-In order to train own model, we are supposed to replace `geneanno.exp.csv` with our ENCC expression profile. Requirement: the gene order has to be the same as the `geneanno.csv` (provided by the author) with 24339 records.
+In order to train own model, we are supposed to replace `geneanno.exp.csv` with our ENCC expression profile. 
+
+- Requirement: the gene order has to be the same as the `geneanno.csv` (provided by the author) with 24339 records.
 
 ![](Pictures/geneanno_csv.png)
 
-•Reason: need to read default precomputed epigenomic features stored in `Xreducedall.2002.npy` file
-(24339 rows, 20020 columns).
+- Reason: need to read default precomputed epigenomic features stored in `Xreducedall.2002.npy` file
+  (24339 rows, 20020 columns).
 
 ![](Pictures/Xreducedall.2002.npy.png)
 
