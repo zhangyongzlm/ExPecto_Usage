@@ -54,11 +54,21 @@ Actually, there is no need to get  the gene annotation file from [GENCODE](https
 
 ### How to get the final gene expression file
 
-This can be done for example using closest-features from [BEDOPS](https://bedops.readthedocs.io/en/latest/) and the representation TSS of protein coding genes that we included, for example:
+The author mentioned that this can be done using closest-features from [BEDOPS](https://bedops.readthedocs.io/en/latest/) and the representation TSS of protein coding genes that they included, for example:
 
 ```
 closest-features --delim '\t' --closest --dist <(awk '{printf $1"\t"$2-1"\t"$2"\n"}' ./example/example.vcf|sort-bed - ) ./resources/geneanno.pc.sorted.bed > ./example/example.vcf.bed.sorted.bed.closestgene
 ```
+
+In practice, I find that this command does not work. I would advise to do as the following steps.
+
+1. Run `preprocess_closest-features.py`  Input: the *vcf* variant file (1-based position); output: the variant file (0-based position).
+
+   ![](Pictures/preprocess_closest-features.png)
+
+2. Run `closest-features --delim '\t' --closest --dist variant_0based ./resources/geneanno.pc.sorted.bed > ./example/example.vcf.bed.sorted.bed.closestgene `
+
+3. Run `preprocess_closest-features_addRefAlt.py`. Input: example.vcf.bed.sorted.bed.closestgene; output: example.vcf.bed.sorted.bed.closestgene_RefAlt
 
 ### How to train our own prediction model (e.g., ENCC)
 
