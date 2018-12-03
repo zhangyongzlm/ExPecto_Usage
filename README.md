@@ -8,10 +8,20 @@ Specification of how to use ExPecto to predict variant's effect on gene expressi
 ```
 python chromatin.py ./example/example.vcf
 ```
-The input file *example.vcf* is the standard vcf format. The separator is the table sign. The screenshot is as following.
+The above command is provided by the author, but I recommend to use the following command.
+
+```
+python chromatin_print_modifiedByYong.py --cuda --gpu_num n ./example/example.vcf
+```
+
+Based on `chromatin.py` , I write `chromatin_print_modifiedByYong.py`. The main differences are that `chromatin_print_modifiedByYong.py` is allowed us to specify the GPU running the program by parameter `--gpu_num`, and prints some intermediate variables to help us monitor the procedure.
+
+The input file `example.vcf` is the standard *vcf* format. The separator is the table sign. The screenshot is as following.
 ![](Pictures/example_vcf.png)
 
+However, our variant file `variants_orig` does not have the same format, whose screenshot is as following.
 
+We can use `filter_variants.py` to convert `variants_orig` into the file with standard format, meanwhile filtering variants based on `P-value`.
 
 ## Computes predicted tissue-specific expression effects which takes predicted chromatin effects as input
 ```
