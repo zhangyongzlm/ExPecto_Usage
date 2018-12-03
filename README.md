@@ -2,6 +2,8 @@
 
 # ExPecto_Usage
 
+ExPecto (https://github.com/FunctionLab/ExPecto.git)
+
 Specification of how to use ExPecto to predict variant's effect on gene expression when applying to our own data
 
 ## 1. Computes the chromatin effects of the variants, using trained convolutional neural network model
