@@ -4,7 +4,7 @@
 
 Specification of how to use ExPecto to predict variant's effect on gene expression when applying to our own data
 
-## Computes the chromatin effects of the variants, using trained convolutional neural network model
+## 1. Computes the chromatin effects of the variants, using trained convolutional neural network model
 ```
 python chromatin.py ./example/example.vcf
 ```
@@ -25,7 +25,7 @@ However, our variant file `variants_orig` does not have the same format, whose s
 
 We can use `filter_variants.py` to convert `variants_orig` into the file with standard format, meanwhile filtering variants based on `P-value`.
 
-## Computes predicted tissue-specific expression effects which takes predicted chromatin effects as input
+## 2. Computes predicted tissue-specific expression effects which takes predicted chromatin effects as input
 ```
 python predict.py --coorFile ./example/example.vcf --geneFile ./example/example.vcf.bed.sorted.bed.closestgene --snpEffectFilePattern ./example/example.vcf.shift_SHIFT.diff.h5 --modelList ./resources/modellist --output output.csv
 ```
@@ -40,7 +40,7 @@ The content of the gene association file has to include the following informatio
 - The fourth and fifth columns are the reference bases and alternative bases, respectively.
 - The last three columns are the strand of the associated gene, the ENSEMBL gene id (matched with the gene annotation file `./resources/geneanno.csv`) and distance to the representative TSS of that gene (The distance should be signed and calculated as ''*TSS position* - *variant position*" regardless of on which strand the gene is transcribed.).
 
-### How to get the TSS information of the corresponding genes
+### 2.1. How to get the TSS information of the corresponding genes
 
 Download the gene annotation file `gencode.v19.annotation.gtf.gz` from [GENCODE](https://www.gencodegenes.org/human/release_19.html).
 
@@ -52,7 +52,7 @@ The initial `gtf` file is specified by variable `gencode19`; the output file is 
 
 Actually, there is no need to get  the gene annotation file from [GENCODE](https://www.gencodegenes.org/human/release_19.html), because we can only predict the expression of genes recorded in `resources/geneanno.csv` based on existent features.
 
-### How to get the final gene expression file
+### 2.2. How to get the final gene expression file
 
 The author mentioned that this can be done using closest-features from [BEDOPS](https://bedops.readthedocs.io/en/latest/) and the representation TSS of protein coding genes that they included, for example:
 
@@ -68,9 +68,13 @@ In practice, I find that this command does not work. I would advise to do as the
 
 2. Run `closest-features --delim '\t' --closest --dist variant_0based ./resources/geneanno.pc.sorted.bed > ./example/example.vcf.bed.sorted.bed.closestgene `
 
-3. Run `preprocess_closest-features_addRefAlt.py`. Input: example.vcf.bed.sorted.bed.closestgene; output: example.vcf.bed.sorted.bed.closestgene_RefAlt
+   ![](Pictures/closest-features.png)
 
-### How to train our own prediction model (e.g., ENCC)
+3. Run `preprocess_closest-features_addRefAlt.py`. Input: example.vcf.bed.sorted.bed.closestgene; output: example.vcf.bed.sorted.bed.closestgene_RefAlt.
+
+   ![](Pictures/preprocess_closest-features_addRefAlt.png)
+
+### 2.3. How to train our own prediction model (e.g., ENCC)
 
 ```
 python ./train.py --expFile ./resources/geneanno.exp.csv --targetIndex 1 --output model.adipose
