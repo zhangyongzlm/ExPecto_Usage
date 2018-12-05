@@ -3,9 +3,16 @@
 # @Time    : 12/3/2018 4:38 PM
 # @Author  : Yong
 import pandas as pd
+import argparse
 
+parser = argparse.ArgumentParser(description='Help add REF and ALT columns')
+parser.add_argument('inFile', dest='inFile', type=str, action='store',
+                    help='Path of the file without REF and ALT columns')
+parser.add_argument('outFile', dest='outFile', type=str, action='store',
+                    help='Path of the file with REF and ALT columns')
+args = parser.parse_args()
 
-vcf = pd.read_table('data/variants_0.001.vcf', header=None, names=['CHROM', 'POS', '-', 'REF', 'ALT'])
+vcf = pd.read_table(args.inFile, header=None, names=['CHROM', 'POS', '-', 'REF', 'ALT'])
 closestgene = pd.read_table('data/variants_0.001_for_closest-features.vcf.bed.sorted.bed.closestgene', header=None,
                             names=['CHROM', 'POS_0', 'POS', 'chr', 'TSS_0', 'TSS', 'Strand', 'Gene_ID', 'Dist'])
 
@@ -21,5 +28,4 @@ order_custom = ['chr1', 'chr2', 'chr3', 'chr4', 'chr5', 'chr6', 'chr7', 'chr8', 
 merged['CHROM'] = merged['CHROM'].astype('category').cat.set_categories(order_custom)
 merged.sort_values(by=['CHROM', 'POS'], ascending=True, inplace=True)
 
-merged.to_csv('data/variants_0.001_for_closest-features.vcf.bed.sorted.bed.closestgene_RefAlt', sep='\t',
-              index=False, header=False)
+merged.to_csv(args.outFile, sep='\t', index=False, header=False)
