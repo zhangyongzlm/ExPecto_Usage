@@ -25,7 +25,7 @@ However, our variant file `variants_orig` does not have the same format, whose s
 
 ![](Pictures/variants_orig.png)
 
-We can use `filter_variants.py` to convert `variants_orig` into the file with standard format, meanwhile filtering variants based on `P-value`.
+We can use `filter_variants.py` to convert `variants_orig` into the file in standard format, meanwhile filtering variants based on `P-value`.
 
 ## 2. Computes predicted tissue-specific expression effects which takes predicted chromatin effects as input
 ```
