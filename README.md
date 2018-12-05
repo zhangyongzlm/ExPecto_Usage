@@ -48,9 +48,7 @@ Download the gene annotation file `gencode.v19.annotation.gtf.gz` from [GENCODE]
 
 ![](Pictures/gencode.png)
 
-As we can see, the initial `gtf` file adopts 1-based position. According to the specification, it should be converted to 0-based position when extract the TSS information. Therefore, I wrote a python script `gene_strand.py`.
-
-The initial `gtf` file is specified by variable `gencode19`; the output file is specified by variable `gencode19_cut`. Please note that the separator is also the table sign.
+As we can see, the initial `gtf` file adopts 1-based position. According to the specification, it should be converted to 0-based position when extract the TSS information. Therefore, I wrote a python script `gene_strand.py`. The initial `gtf` file is specified by variable `gencode19`; the output file is specified by variable `gencode19_cut`. Please note that the separator is also the table sign.
 
 Actually, there is no need to get  the gene annotation file from [GENCODE](https://www.gencodegenes.org/human/release_19.html), because we can only predict the expression of genes recorded in `resources/geneanno.csv` based on existent features.
 
