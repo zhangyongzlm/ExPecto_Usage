@@ -70,7 +70,7 @@ In practice, I find that this command does not work. I would advise to do as the
 
    ![](Pictures/closest-features.png)
 
-3. Run `preprocess_closest-features_addRefAlt.py`. Input: example.vcf.bed.sorted.bed.closestgene; output: example.vcf.bed.sorted.bed.closestgene_RefAlt.
+3. Run `preprocess_closest-features_addRefAlt.py`. Input1: example.vcf.bed.sorted.bed.closestgene; input2: the *vcf* variant file (1-based position) with Ref and Alt information; output: example.vcf.bed.sorted.bed.closestgene_RefAlt.
 
    ![](Pictures/preprocess_closest-features_addRefAlt.png)
 
