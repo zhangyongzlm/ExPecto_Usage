@@ -6,9 +6,9 @@ import pandas as pd
 import argparse
 
 parser = argparse.ArgumentParser(description='Help add REF and ALT columns')
-parser.add_argument('inFile', dest='inFile', type=str, action='store',
+parser.add_argument('inFile', type=str, action='store',
                     help='Path of the file without REF and ALT columns')
-parser.add_argument('outFile', dest='outFile', type=str, action='store',
+parser.add_argument('outFile', type=str, action='store',
                     help='Path of the file with REF and ALT columns')
 args = parser.parse_args()
 
