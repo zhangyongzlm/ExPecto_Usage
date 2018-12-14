@@ -7,9 +7,9 @@ import argparse
 
 
 parser = argparse.ArgumentParser(description='Convert the 1-based variant file to the 0-based variant file')
-parser.add_argument('inFile', dest='inFile', type=str, action='store',
+parser.add_argument('inFile', type=str, action='store',
                     help='Path of the input file in 1-based position')
-parser.add_argument('outFile', dest='outFile', type=str, action='store',
+parser.add_argument('outFile', type=str, action='store',
                     help='Path of the output file in 0-based position')
 args = parser.parse_args()
 
