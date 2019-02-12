@@ -30,7 +30,8 @@ effects_gene_name_sorted = effects_gene_name.sort_values(by='gene_name')
 effects_gene_name_sorted.to_csv(args.origEffects[:-4] + '_withGeneName_sortByGene.csv', index=None)
 
 grouped = effects_gene_name.groupby('gene_name')
-grouped_stat = grouped['ENCC'].agg([np.std, np.mean])
+# grouped_stat = grouped['ENCC'].agg([np.std, np.mean])
+grouped_stat = grouped['ENCC'].agg([np.std, np.mean, np.sum, np.count_nonzero])
 grouped_stat.to_csv(args.origEffects[:-4] + '_withGeneName_stat.csv')
 
 print('Finished!')
